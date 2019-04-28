@@ -36,6 +36,12 @@ class PostModel(models.Model):
 						 auto_now=False, 
 						 auto_now_add=False, 
 						 default=timezone.now)
+	updated 	= models.DateTimeField(
+						 auto_now=True, 
+						 auto_now_add=False)
+	timestamp 	= models.DateTimeField(
+						 auto_now=False, 
+						 auto_now_add=True)
 
 	class Meta:
 		verbose_name='Post'

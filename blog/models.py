@@ -3,6 +3,7 @@ from django.db import models
 from django.utils import timezone
 from django.utils.text import slugify
 from django.utils.encoding import smart_text
+from django.db.models.signals import pre_save, post_save
 
 # Opciones del campo publish
 PUBLISH_CHOICES	= [
@@ -33,6 +34,25 @@ class PostModel(models.Model):
 		return smart_text(self.title)
 
 	def save(self, *args, **kwargs):
-		if not self.slug or self.title:
-			self.slug = slugify(self.title, allow_unicode=True)
+		# if not self.slug or self.title:
+		# 	self.slug = slugify(self.title, allow_unicode=True)
 		super(PostModel, self).save(*args, **kwargs)
+
+# pre_save
+def blog_post_model_pre_save_receiver(sender, instance, *args, **kwargs):
+    print("Antes de Guardar")
+    if not instance.slug or instance.title:
+        instance.slug = slugify(instance.title, allow_unicode=True) 
+
+pre_save.connect(blog_post_model_pre_save_receiver, sender=PostModel)
+
+# post_save
+def blog_post_model_post_save_receiver(sender, instance, created, *args, **kwargs):
+    print("Despues de Guardar")
+    print(created)
+    if created:
+        if not instance.slug or instance.title:
+            instance.slug = slugify(instance.title, allow_unicode=True)
+            instance.save()
+
+post_save.connect(blog_post_model_post_save_receiver, sender=PostModel)

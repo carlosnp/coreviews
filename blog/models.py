@@ -15,13 +15,27 @@ PUBLISH_CHOICES	= [
 #Modelo del Post
 class PostModel(models.Model):
 	active 		= models.BooleanField(default=True)
-	title 		= models.CharField(max_length=100, unique=True)
+	title 		= models.CharField(
+				  		 max_length=100,
+				  		 verbose_name='Post title', 
+				  		 unique=True, 
+				  		 error_messages = {
+				  		 	"unique": "This title is not unique, please try again.",
+				  		 },
+				  		 help_text='Must be a unique title.'
+				  		 )
 	slug 		= models.SlugField(null=True,blank=True)
 	content 	= models.TextField(null=True, blank=True)
 	# Campo con opciones
-	publish 	= models.CharField(max_length=120, choices=PUBLISH_CHOICES, default='draft')
+	publish 	= models.CharField(
+						 max_length=120, 
+						 choices=PUBLISH_CHOICES, 
+						 default='draft')
 	view_count  = models.IntegerField(default=0)
-	publish_date =models.DateField(auto_now=False, auto_now_add=False, default=timezone.now)
+	publish_date =models.DateField(
+						 auto_now=False, 
+						 auto_now_add=False, 
+						 default=timezone.now)
 
 	class Meta:
 		verbose_name='Post'

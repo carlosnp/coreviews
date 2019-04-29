@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %} POST {% endblock %}
+
+{% block content %}
+	<div class="">
+		<div class="">
+			<div class="">
+                <h1> {{ object.title }} </h1>
+                <h4> {{ object.slug }} </h4>
+			</div>
+			<p style="text-align: justify;"> {{ object.content }} </p>
+			<p style="color: grey;">Fecha de creación: {{ object.timestamp }}</p>
+			<p style="color: #3a8688;">Fecha de actualización: {{ object.updated }}</p>
+		</div>
+		<a href="{% url 'posts:list'%}">Regresar a la lista de posts</a>
+	</div>
+{% endblock content %}

@@ -2,6 +2,7 @@
 from datetime import timedelta, datetime, date
 # Django
 from django.db import models
+from django.urls import reverse
 from django.utils import timezone
 from django.utils.text import slugify
 from django.utils.encoding import smart_text
@@ -97,6 +98,10 @@ class PostModel(models.Model):
 		# 	self.slug = slugify(self.title, allow_unicode=True)
 		super(PostModel, self).save(*args, **kwargs)
 	
+	# Url del post detail
+	def get_absolute_url(self):
+		return reverse("posts:detail", kwargs={"pk":self.id})
+
 	# Edad del post
 	@property
 	def age(self):

@@ -23,6 +23,7 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('dashboard.urls', namespace="dashboards")),
+    path('blog/', include('blog.urls', namespace="posts")),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

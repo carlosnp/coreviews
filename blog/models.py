@@ -14,6 +14,38 @@ PUBLISH_CHOICES	= [
 		('publish', 'Publish'),
 		('private', 'Private'),
 	]
+# Model QuerySet
+class PostModelQuerySet(models.query.QuerySet):
+	# Filtra los objetos activos
+    def active(self):
+        return self.filter(active=True)
+	# Filtra los objetos segun la palabra que contenga el titulo
+    def post_title_items(self, value):
+        return self.filter(title__icontains=value)
+
+# Model Manager
+class PostModelManager(models.Manager):
+	
+	# Obtenemos queryset
+	def get_queryset(self):
+		return PostModelQuerySet(self.model, using=self._db)
+	
+    # define la funcion all del model manager
+	def all(self, *args, **kwargs):
+		# qs = super(PostModelManager, self).all(*args, **kwargs).active() #.filter(active=True)
+		qs = self.get_queryset().active()
+		return qs
+	
+	# Filtra los objetos entre dos fechas
+	def get_timeframe(self, date1, date2):
+		# Obtenemos todos los elementos
+		qs = self.get_queryset()
+		# Filtro GTE: Devuelve un valor booleano si el valor es mayor o igual que
+		qs_time_1 = qs.filter(publish_date__gte=date1)
+		# Filtro LT: Devuelve un valor booleano si el valor es menor que el argumento
+		qs_time_2 = qs_time_1.filter(publish_date__lt=date2) 
+		# final_qs = (qs_time_1 | qs_time_2).distinct()
+		return qs_time_2
 
 #Modelo del Post
 class PostModel(models.Model):
@@ -45,6 +77,9 @@ class PostModel(models.Model):
 	timestamp 	= models.DateTimeField(
 						 auto_now=False, 
 						 auto_now_add=True)
+	
+	# Model Manager
+	objects = PostModelManager()
 
 	class Meta:
 		verbose_name='Post'
@@ -72,8 +107,6 @@ class PostModel(models.Model):
                                 self.publish_date,
                                 datetime.now().min.time()
                         )
-			print(now)
-			print(publish_time)
 			try:
 				difference = now - publish_time
 				print(difference)

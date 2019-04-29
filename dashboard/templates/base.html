@@ -1,0 +1,23 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{% block title %}Core{% endblock title %}</title>
+	<!-- Estilos Extra -->
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}" crossorigin="anonymous">
+	<!-- Estilos propios -->
+	<!-- <link rel="stylesheet" href="{% static 'css/estilos.css' %}"> -->
+	{% block head_extra %}{% endblock head_extra %}
+</head>
+<body>
+	<!-- Navbar -->
+	{% include 'navbar.html' %}
+	<!-- Mensajes Django -->
+	{% include 'mensajes.html' %}
+	{% block content %}
+	{% endblock %}
+	<!-- Bootstrap -->
+	<script src="{% static 'bootstrap/js/bootstrap.min.js' %}" crossorigin="anonymous"></script>
+</body>
+</html>

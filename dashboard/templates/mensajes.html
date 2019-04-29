@@ -1,0 +1,31 @@
+{% if messages %}
+	<div class="messages" id="SuccesMessage">
+	    {% for message in messages %}
+	    <div 
+	    style="margin: 0 20px; text-align: center;"
+	    role="alert" 
+	    {% if message.tags %} 
+	    	class="alert alert-{{ message.tags }} alert-dismissible"
+	    {% endif %}>
+    		 <button 
+    		 type="button" 
+    		 class="close" 
+    		 data-dismiss="alert" 
+    		 aria-hidden="true">
+    		 	&times;
+    		 </button>
+			<h3>
+				{{ message }}
+			</h3>
+		</div>
+	    {% endfor %}
+	</div>
+
+	<script>
+	// Temporizador de Mensajes
+	var message_ele = document.getElementById("SuccesMessage");
+		setTimeout(function(){ 
+		   message_ele.style.display = "none"; 
+		}, 5000);
+	</script>
+{% endif %}

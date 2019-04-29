@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %} POST {% endblock %}
+
+{% block content %}
+	<div class="">
+		<div class="">
+			<div class="">
+                <h1> {{ article.title }} </h1>
+                <h4> {{ article.slug }} </h4>
+			</div>
+			<p style="text-align: justify;"> {{ article.content }} </p>
+			<p style="color: grey;">Fecha de creación: {{ article.timestamp }}</p>
+			<p style="color: #3a8688;">Fecha de actualización: {{ article.updated }}</p>
+		</div>
+		<a href="{% url 'posts:list'%}">Regresar a la lista de posts</a>
+		<a href="{% url 'posts:update' id=article.id %}">Actualizar</a>
+		<a href="{% url 'posts:delete' id=article.id %}">Eliminar</a>
+	</div>
+{% endblock content %}

@@ -1,8 +1,11 @@
+# python
+from datetime import timedelta, datetime, date
 # Django
 from django.db import models
 from django.utils import timezone
 from django.utils.text import slugify
 from django.utils.encoding import smart_text
+from django.utils.timesince import timesince
 from django.db.models.signals import pre_save, post_save
 
 # Opciones del campo publish
@@ -52,11 +55,34 @@ class PostModel(models.Model):
 
 	def __unicode__(self):
 		return smart_text(self.title)
-
+	
+	# Funcion save
 	def save(self, *args, **kwargs):
 		# if not self.slug or self.title:
 		# 	self.slug = slugify(self.title, allow_unicode=True)
 		super(PostModel, self).save(*args, **kwargs)
+	
+	# Edad del post
+	@property
+	def age(self):
+		#return timesince(self.publish_date)
+		if self.publish == 'publish':
+			now = datetime.now()
+			publish_time = datetime.combine(
+                                self.publish_date,
+                                datetime.now().min.time()
+                        )
+			print(now)
+			print(publish_time)
+			try:
+				difference = now - publish_time
+				print(difference)
+			except:
+				return "Unknown"
+			if difference <= timedelta(minutes=1):
+				return 'just now'
+			return '{time} ago'.format(time= timesince(publish_time).split(', ')[0])
+		return "Not published"
 
 # pre_save
 def blog_post_model_pre_save_receiver(sender, instance, *args, **kwargs):

@@ -23,9 +23,9 @@ class Blog_Create_View(CreateView):
 
 # Retrive
 class Blog_Detail_View(DetailView):
-    model = PostModel
     template_name = "blog/detail.html"
-    
+    model = PostModel
+   
     # Context Data
     def get_context_data(self, **kwargs):
         qs = super(Blog_Detail_View,self).get_context_data(**kwargs)
@@ -33,9 +33,9 @@ class Blog_Detail_View(DetailView):
 
 # Update
 class Blog_Update_View(UpdateView):
+	template_name = "blog/create.html"
 	queryset = PostModel.objects.all()
 	form_class = PostModelForm
-	template_name = "blog/create.html"
 
 	# Context Data
 	def get_context_data(self, *args,**kwargs):
@@ -45,8 +45,8 @@ class Blog_Update_View(UpdateView):
     
 # List
 class Blog_List_View(ListView):
-    model = PostModel
     template_name = "blog/list.html"
+    model = PostModel
 
     def get_queryset(self, *args,**kwargs):
         qs = super(Blog_List_View, self).get_queryset(*args,**kwargs)

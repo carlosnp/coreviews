@@ -14,5 +14,6 @@
 			<p style="color: #3a8688;">Fecha de actualización: {{ object.updated }}</p>
 		</div>
 		<a href="{% url 'posts:list'%}">Regresar a la lista de posts</a>
+		<a href="{% url 'posts:update' pk=object.id %}">Actualizar</a>
 	</div>
 {% endblock content %}

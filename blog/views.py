@@ -1,6 +1,6 @@
 # Django
 from django.shortcuts import render
-from django.views.generic import DetailView, ListView, CreateView
+from django.views.generic import CreateView, DetailView, UpdateView,ListView
 
 # Project
 from .models import PostModel
@@ -30,6 +30,18 @@ class Blog_Detail_View(DetailView):
     def get_context_data(self, **kwargs):
         qs = super(Blog_Detail_View,self).get_context_data(**kwargs)
         return qs
+
+# Update
+class Blog_Update_View(UpdateView):
+	queryset = PostModel.objects.all()
+	form_class = PostModelForm
+	template_name = "blog/create.html"
+
+	# Context Data
+	def get_context_data(self, *args,**kwargs):
+		context = super(Blog_Update_View,self).get_context_data(*args,**kwargs)
+		context["title"] = "Editar Post"
+		return context
     
 # List
 class Blog_List_View(ListView):

@@ -9,14 +9,17 @@ from .forms import PostModelForm
 # Create
 class Blog_Create_View(CreateView):
 	template_name = "blog/create.html"
-	model = PostModel
-	fields = ["title","content", "publish"]
+	form_class = PostModelForm
 
 	# Context Data
 	def get_context_data(self, *args,**kwargs):
 		context = super(Blog_Create_View,self).get_context_data(*args,**kwargs)
 		context["title"] = "Crear Post"
 		return context
+
+	# Formulario valido
+	def form_valid(self, form):
+		return super(Blog_Create_View,self).form_valid(form)
 
 # Retrive
 class Blog_Detail_View(DetailView):

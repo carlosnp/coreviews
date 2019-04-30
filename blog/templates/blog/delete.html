@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %} DELETE {% endblock %}
+
+{% block content %}
+	<div class="container">
+		<div class="">
+			<a href="{% url 'posts:list'%}">Regresar a la lista de Post</a>
+		<div>
+			<h1> Desea eliminar el post: {{ object.title }}?</h1>
+		</div>
+            <form action="" method="POST" action="." class="">
+				{% csrf_token %}
+				<p>Esta Seguro?</p>
+				<input type="submit" value="Si">
+				<a href="{% url 'posts:detail' pk=object.id %}">Cancelar</a>
+			</form>
+		</div>
+	</div>
+{% endblock content %}

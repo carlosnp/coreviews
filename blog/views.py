@@ -1,6 +1,11 @@
 # Django
 from django.shortcuts import render
-from django.views.generic import CreateView, DetailView, UpdateView,ListView
+from django.urls import reverse_lazy
+from django.views.generic import (CreateView, 
+								  DetailView, 
+								  UpdateView, 
+								  DeleteView, 
+								  ListView)
 
 # Project
 from .models import PostModel
@@ -42,6 +47,15 @@ class Blog_Update_View(UpdateView):
 		context = super(Blog_Update_View,self).get_context_data(*args,**kwargs)
 		context["title"] = "Editar Post"
 		return context
+
+# Delete
+class Blog_Delete_View(DeleteView):
+	template_name = "blog/delete.html"
+	model = PostModel
+	# success_url = reverse_lazy("posts:list")
+
+	def get_success_url(self):
+		return reverse_lazy("posts:list")
     
 # List
 class Blog_List_View(ListView):

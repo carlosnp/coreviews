@@ -15,5 +15,6 @@
 		</div>
 		<a href="{% url 'posts:list'%}">Regresar a la lista de posts</a>
 		<a href="{% url 'posts:update' pk=object.id %}">Actualizar</a>
+		<a href="{% url 'posts:delete' pk=object.id %}">Eliminar</a>
 	</div>
 {% endblock content %}

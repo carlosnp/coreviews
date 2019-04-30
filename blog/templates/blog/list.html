@@ -3,17 +3,23 @@
 {% block title %} LISTA {% endblock %}
 
 {% block content %}
-	<div class="">
+	<div class="container">
         <h1>Lista de Posts</h1>
         <!-- Menu de Busqueda -->
         <form method="GET" action=".">
             <input type="text" name="q" placeholder="Buscar">
         </form>
+        <a class="" href="{% url 'posts:create' %}">Crear Post</a>
         <h4> Usuario: {{ users_qs }} </h4>
         <!-- Lista de Posts -->
+        <div style="">
         {% for obj in object_list %}
-            <h2 style="color:blue"> {{ obj.id }} <a style="color:blue;text-decoration: none;" href="{{ obj.get_absolute_url }}"> {{ obj.title }} </a> </h2>
+            <h2 style="color:blue"> 
+                {{ obj.id }} <a style="color:blue;text-decoration: none;" href="{{ obj.get_absolute_url }}"> {{ obj.title }} </a> 
+            </h2>
+            <p> {{obj.publish_date}} </p>
         {% endfor %}
+        </div>
             
 	</div>
 {% endblock content %}

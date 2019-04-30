@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %} {{ title_header }} {% endblock %}
+
+{% block content %}
+	<div class="container">
+		<div class="">
+		<div>
+		<h1> {{ title }} </h1>
+		<a href="{% url 'posts:list'%}">Regresar a la lista de Post</a>
+		</div>
+			<form action="" method="POST" enctype="multipart/form-data" class="site-form">
+				{% csrf_token %}
+				{{ form.as_p }}
+				<button class="site-buttom" type="submit">Guardar</button>
+			</form>
+		</div>
+	</div>
+{% endblock content %}

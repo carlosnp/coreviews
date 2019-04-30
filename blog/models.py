@@ -83,6 +83,7 @@ class PostModel(models.Model):
 	objects = PostModelManager()
 
 	class Meta:
+		ordering = ["-timestamp", "-updated"]
 		verbose_name='Post'
 		verbose_name_plural = 'Posts'
 

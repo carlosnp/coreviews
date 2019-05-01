@@ -35,10 +35,15 @@ class Blog_Create_View(SuccessMessageMixin, CreateView):
 class Blog_Detail_View(DetailView):
     template_name = "blog/detail.html"
     model = PostModel
-   
+	
+	# Metodo que toma la solicitud y devuelve la respuesta   
+    def dispatch(self, request, *args, **kwargs):
+    	messages.success(self.request, "Bienvenido al Post: {}".format(self.get_object().title))
+    	return super(Blog_Detail_View, self).dispatch(request, *args, **kwargs)
+
     # Context Data
     def get_context_data(self, **kwargs):
-        qs = super(Blog_Detail_View,self).get_context_data(**kwargs)
+        qs = super(Blog_Detail_View, self).get_context_data(**kwargs)
         return qs
 
 # Update
@@ -46,7 +51,7 @@ class Blog_Update_View(SuccessMessageMixin, UpdateView):
 	template_name = "blog/create.html"
 	queryset = PostModel.objects.all()
 	form_class = PostModelForm
-	success_message = "Actualizaste el POST: %(title)s"
+	success_message = "Actualizaste el POST: %(title)s hoy %(fecha)s"
 
 	# Context Data
 	def get_context_data(self, *args,**kwargs):
@@ -55,7 +60,7 @@ class Blog_Update_View(SuccessMessageMixin, UpdateView):
 		return context
 
 	def get_success_message(self, cleaned_data):
-		return self.success_message % dict(cleaned_data,title=self.object.title)
+		return self.success_message % dict(cleaned_data,fecha=self.object.updated)
 
 # Delete
 class Blog_Delete_View(DeleteView):

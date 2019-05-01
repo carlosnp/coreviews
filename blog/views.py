@@ -54,6 +54,9 @@ class Blog_Update_View(SuccessMessageMixin, UpdateView):
 		context["title"] = "Editar Post"
 		return context
 
+	def get_success_message(self, cleaned_data):
+		return self.success_message % dict(cleaned_data,title=self.object.title)
+
 # Delete
 class Blog_Delete_View(DeleteView):
 	template_name = "blog/delete.html"

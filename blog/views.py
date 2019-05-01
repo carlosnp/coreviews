@@ -7,15 +7,18 @@ from django.views.generic import (CreateView,
 								  UpdateView, 
 								  DeleteView, 
 								  ListView)
+from django.contrib.messages.views import SuccessMessageMixin
 
 # Project
 from .models import PostModel
 from .forms import PostModelForm
 
 # Create
-class Blog_Create_View(CreateView):
+class Blog_Create_View(SuccessMessageMixin, CreateView):
 	template_name = "blog/create.html"
 	form_class = PostModelForm
+	model = PostModel
+	success_message = "Creaste el POST: %(title)s"		
 
 	# Context Data
 	def get_context_data(self, *args,**kwargs):
@@ -25,7 +28,8 @@ class Blog_Create_View(CreateView):
 
 	# Formulario valido
 	def form_valid(self, form):
-		return super(Blog_Create_View,self).form_valid(form)
+		valid_form = super(Blog_Create_View,self).form_valid(form)
+		return valid_form
 
 # Retrive
 class Blog_Detail_View(DetailView):
@@ -38,10 +42,11 @@ class Blog_Detail_View(DetailView):
         return qs
 
 # Update
-class Blog_Update_View(UpdateView):
+class Blog_Update_View(SuccessMessageMixin, UpdateView):
 	template_name = "blog/create.html"
 	queryset = PostModel.objects.all()
 	form_class = PostModelForm
+	success_message = "Actualizaste el POST: %(title)s"
 
 	# Context Data
 	def get_context_data(self, *args,**kwargs):
@@ -54,7 +59,6 @@ class Blog_Delete_View(DeleteView):
 	template_name = "blog/delete.html"
 	model = PostModel
 	# success_url = reverse_lazy("posts:list")
-	# success_message = "Eliminaste el Post: %(title)s"
 
 	def get_success_url(self):
 		messages.success(self.request, "Eliminaste el Post: {}".format(self.get_object().title))

@@ -1,5 +1,6 @@
 # Django
 from django.shortcuts import render
+from django.contrib import messages
 from django.urls import reverse_lazy
 from django.views.generic import (CreateView, 
 								  DetailView, 
@@ -53,8 +54,10 @@ class Blog_Delete_View(DeleteView):
 	template_name = "blog/delete.html"
 	model = PostModel
 	# success_url = reverse_lazy("posts:list")
+	# success_message = "Eliminaste el Post: %(title)s"
 
 	def get_success_url(self):
+		messages.success(self.request, "Eliminaste el Post: {}".format(self.get_object().title))
 		return reverse_lazy("posts:list")
     
 # List

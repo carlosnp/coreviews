@@ -15,7 +15,7 @@
         <div style="">
         {% for obj in object_list %}
             <h2 style="color:blue"> 
-                {{ obj.id }} <a style="color:blue;text-decoration: none;" href="{{ obj.get_absolute_url }}"> {{ obj.title }} </a> 
+                <a style="color:blue;text-decoration: none;" href="{{ obj.get_absolute_url }}"> {{ obj.title }} </a> 
             </h2>
             <p> Publicado: {{obj.publish_date}} | Actualizado: {{obj.updated}}</p>
         {% endfor %}

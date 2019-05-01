@@ -1,3 +1,6 @@
+# Python
+from datetime import datetime
+
 # Django
 from django.shortcuts import render
 from django.contrib import messages
@@ -57,7 +60,7 @@ class Blog_Update_View(SuccessMessageMixin, UpdateView):
 	template_name = "blog/create.html"
 	queryset = PostModel.objects.all()
 	form_class = PostModelForm
-	success_message = "Actualizaste el POST: %(title)s hoy %(fecha)s"
+	success_message = "Actualizaste el POST: %(title)s el dia %(fecha)s"
 
 	def dispatch(self, request, *args, **kwargs):
 		try:
@@ -75,7 +78,7 @@ class Blog_Update_View(SuccessMessageMixin, UpdateView):
 		return context
 
 	def get_success_message(self, cleaned_data):
-		return self.success_message % dict(cleaned_data,fecha=self.object.updated)
+		return self.success_message % dict(cleaned_data,fecha=self.object.updated.strftime("%d-%m-%Y"))
 
 # Delete
 class Blog_Delete_View(DeleteView):

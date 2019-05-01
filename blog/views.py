@@ -38,8 +38,14 @@ class Blog_Detail_View(DetailView):
 	
 	# Metodo que toma la solicitud y devuelve la respuesta   
     def dispatch(self, request, *args, **kwargs):
-    	messages.success(self.request, "Bienvenido al Post: {}".format(self.get_object().title))
-    	return super(Blog_Detail_View, self).dispatch(request, *args, **kwargs)
+    	try:
+    		messages.success(self.request, "Bienvenido al Post: {}".format(self.get_object().title))
+    		return super(Blog_Detail_View, self).dispatch(request, *args, **kwargs)
+    	except:
+    		template_names 	= "404.html"
+    		detail_comment = "El Post que buscas no existe"
+    		contextdata = {"detail_comment": detail_comment,}
+    		return render(request, template_names, contextdata, status = 404)
 
     # Context Data
     def get_context_data(self, **kwargs):
@@ -52,6 +58,15 @@ class Blog_Update_View(SuccessMessageMixin, UpdateView):
 	queryset = PostModel.objects.all()
 	form_class = PostModelForm
 	success_message = "Actualizaste el POST: %(title)s hoy %(fecha)s"
+
+	def dispatch(self, request, *args, **kwargs):
+		try:
+			return super(Blog_Update_View, self).dispatch(request, *args, **kwargs)
+		except:
+			template_names 	= "404.html"
+			detail_comment = "El post que deseas editar no existe"
+			contextdata = {"detail_comment": detail_comment,}
+			return render(request, template_names, contextdata, status = 404)
 
 	# Context Data
 	def get_context_data(self, *args,**kwargs):
@@ -67,6 +82,15 @@ class Blog_Delete_View(DeleteView):
 	template_name = "blog/delete.html"
 	model = PostModel
 	# success_url = reverse_lazy("posts:list")
+
+	def dispatch(self, request, *args, **kwargs):
+		try:
+			return super(Blog_Delete_View, self).dispatch(request, *args, **kwargs)
+		except:
+			template_names 	= "404.html"
+			detail_comment = "El post que deseas Eliminar no existe"
+			contextdata = {"detail_comment": detail_comment,}
+			return render(request, template_names, contextdata, status = 404)
 
 	def get_success_url(self):
 		messages.success(self.request, "Eliminaste el Post: {}".format(self.get_object().title))

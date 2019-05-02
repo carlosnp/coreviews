@@ -13,6 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+import django
 from django.contrib import admin
 from django.urls import path, include
 # Static files 
@@ -24,7 +25,9 @@ from django.conf.urls.i18n import i18n_patterns
 
 urlpatterns = i18n_patterns(
     path('admin/', admin.site.urls),
+    path('i18n/', include('django.conf.urls.i18n')),
     path('', include('dashboard.urls', namespace="dashboards")),
+    path('404/',  django.views.defaults.page_not_found, kwargs={'exception': Exception('Page Not Found!')},name='Error404'),
 )
 
 urlpatterns += staticfiles_urlpatterns()

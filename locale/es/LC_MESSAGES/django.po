@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-02 15:02-0400\n"
+"POT-Creation-Date: 2019-05-02 15:32-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,6 +25,18 @@ msgstr "Inglés"
 #: coreviews/settings.py:121
 msgid "Spanish"
 msgstr "Español"
+
+#: dashboard/templates/404.html:12
+msgid "There is no page that you are trying to consult"
+msgstr "No existe la página que intentas consultar"
+
+#: dashboard/templates/404.html:14
+msgid "Sorry"
+msgstr "Lo siento"
+
+#: dashboard/templates/404.html:15
+msgid "Return to homepage"
+msgstr "Volver a la pagina de inicio"
 
 #: dashboard/templates/navbar.html:3
 #, fuzzy

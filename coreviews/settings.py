@@ -117,8 +117,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Lenguajes
 LANGUAGES = (
-    ('en', _('English')),
     ('es', _('Spanish')),
+    ('en', _('English')),
 )
 # Idioma predeterminado
 LANGUAGE_CODE = 'en-us'

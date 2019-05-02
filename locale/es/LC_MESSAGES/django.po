@@ -1,0 +1,65 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-05-02 15:32-0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: coreviews/settings.py:120
+msgid "English"
+msgstr "Inglés"
+
+#: coreviews/settings.py:121
+msgid "Spanish"
+msgstr "Español"
+
+#: dashboard/templates/404.html:12
+msgid "There is no page that you are trying to consult"
+msgstr "No existe la página que intentas consultar"
+
+#: dashboard/templates/404.html:14
+msgid "Sorry"
+msgstr "Lo siento"
+
+#: dashboard/templates/404.html:15
+msgid "Return to homepage"
+msgstr "Volver a la pagina de inicio"
+
+#: dashboard/templates/navbar.html:3
+#, fuzzy
+#| msgid "Home Page"
+msgid "Home"
+msgstr "Página de Inicio"
+
+#: dashboard/templates/navbar.html:10 dashboard/views.py:25
+msgid "About"
+msgstr "Acerca de"
+
+#: dashboard/templates/navbar.html:13
+msgid "Features"
+msgstr "Caracteristicas"
+
+#: dashboard/templates/navbar.html:16
+msgid "Pricing"
+msgstr "Precios"
+
+#: dashboard/templates/navbar.html:19
+msgid "Disabled"
+msgstr "Acceso desactivado"
+
+#: dashboard/views.py:16
+msgid "Home Page"
+msgstr "Página de Inicio"

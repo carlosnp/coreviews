@@ -1,11 +1,12 @@
 {% extends "base.html" %}
+{% load i18n %}
 
 {% block title %} LISTA {% endblock %}
 
 {% block content %}
-	<div class="">
-        <h1>Lista de Posts</h1>
-        <h4> Usuario: {{ users_qs }} </h4>
+	<div class="container">
+        <h1> {% trans 'List of publications' %} </h1>
+        <h4> {% trans 'User' %}: {{ users_qs }} </h4>
         <!-- Lista de Posts -->
         {% for obj in objects %}
             <h2 style="color:blue"> {{ obj.id }} <a style="color:blue;text-decoration: none;" href="{{ obj.get_absolute_url }}"> {{ obj.title }} </a> </h2>

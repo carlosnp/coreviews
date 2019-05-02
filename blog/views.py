@@ -2,6 +2,7 @@
 from django.db.models import Q
 from django.contrib import messages
 from django.shortcuts import render, redirect
+from django.utils.translation import ugettext as _
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 # Project
@@ -18,14 +19,14 @@ def post_create_view(request):
     if form.is_valid():
         instance = form.save(commit = False)
         instance.save()
-        messages.success(request, "Felicidades!!! creaste el POST: %s" % instance.title)
+        messages.success(request, "Congratulations!!! Created the POST: %s" % instance.title)
         try:
             return HttpResponseRedirect(instance.get_absolute_url())
         except:
             return redirect("posts:list")
     context = {
         "title_header": 'Create',
-        "title": "Crear Post",
+        "title": _("Create publication"),
         "form": form
     }
     return render(request, template_name, context)

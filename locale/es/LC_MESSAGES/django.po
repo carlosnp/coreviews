@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-02 16:37-0400\n"
+"POT-Creation-Date: 2019-05-02 17:05-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,6 +29,31 @@ msgstr "Contenido"
 #: blog/forms.py:18
 msgid "Publish as"
 msgstr "Publicar como"
+
+#################################
+# List
+msgid "List of publications"
+msgstr "Lista de publicaciones"
+
+msgid "User"
+msgstr "Usuario"
+
+msgid "Create publication"
+msgstr "Crear publicación"
+
+msgid "Search"
+msgstr "Buscar"
+
+#################################
+# Create
+msgid "Return to the Post list"
+msgstr "Volver a la lista de publicaciones"
+
+msgid "Save"
+msgstr "Guardar"
+
+msgid "Congratulations!!! Created the POST"
+msgstr "¡¡¡Felicidades!!! Creado el POST"
 
 #: coreviews/settings.py:120
 msgid "Spanish"
@@ -56,23 +81,18 @@ msgstr "Volver a la pagina de inicio"
 msgid "Home"
 msgstr "Página de Inicio"
 
-#: dashboard/templates/navbar.html:10 dashboard/views.py:25
 msgid "About"
 msgstr "Acerca de"
 
-#: dashboard/templates/navbar.html:13
 msgid "Features"
 msgstr "Caracteristicas"
 
-#: dashboard/templates/navbar.html:16
 msgid "Pricing"
 msgstr "Precios"
 
-#: dashboard/templates/navbar.html:19
 msgid "Disabled"
 msgstr "Acceso desactivado"
 
-#: dashboard/views.py:16
 msgid "Home Page"
 msgstr "Página de Inicio"
 

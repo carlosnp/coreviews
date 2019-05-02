@@ -8,12 +8,15 @@ from django.utils.text import slugify
 from django.utils.encoding import smart_text
 from django.utils.timesince import timesince
 from django.db.models.signals import pre_save, post_save
+# Django Translation
+from django.utils.translation import gettext as _
+from django.utils.translation import ugettext_lazy as _l
 
 # Opciones del campo publish
 PUBLISH_CHOICES	= [
-		('draft', 'Draft'),
-		('publish', 'Publish'),
-		('private', 'Private'),
+		('draft', _l('Draft')),
+		('publish', _l('Public')),
+		('private', _l('Private')),
 	]
 # Model QuerySet
 class PostModelQuerySet(models.query.QuerySet):
@@ -53,31 +56,35 @@ class PostModel(models.Model):
 	active 		= models.BooleanField(default=True)
 	title 		= models.CharField(
 				  		 max_length=100,
-				  		 verbose_name='Post title', 
+				  		 verbose_name=_l('Title'), 
 				  		 unique=True, 
 				  		 error_messages = {
-				  		 	"unique": "This title is not unique, please try again.",
+				  		 	"unique": _l("This title already exists, please try again."),
 				  		 },
-				  		 help_text='Must be a unique title.'
+				  		 help_text=_l('Must be a unique title.')
 				  		 )
 	slug 		= models.SlugField(null=True,blank=True)
-	content 	= models.TextField(null=True, blank=True)
+	content 	= models.TextField(null=True, blank=True, verbose_name=_l('Content'),)
 	# Campo con opciones
 	publish 	= models.CharField(
 						 max_length=120, 
 						 choices=PUBLISH_CHOICES, 
-						 default='draft')
-	view_count  = models.IntegerField(default=0)
+						 default='draft',
+						 verbose_name=_l('Type of publication'))
+	view_count  = models.IntegerField(default=0, verbose_name=_l('View count'))
 	publish_date =models.DateField(
 						 auto_now=False, 
 						 auto_now_add=False, 
-						 default=timezone.now)
+						 default=timezone.now,
+						 verbose_name=_l('Publish date'))
 	updated 	= models.DateTimeField(
 						 auto_now=True, 
-						 auto_now_add=False)
+						 auto_now_add=False,
+						 verbose_name=_l('Update date'))
 	timestamp 	= models.DateTimeField(
 						 auto_now=False, 
-						 auto_now_add=True)
+						 auto_now_add=True,
+						 verbose_name=_l('Creation date'))
 	
 	# Model Manager
 	objects = PostModelManager()

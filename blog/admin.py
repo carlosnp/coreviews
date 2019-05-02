@@ -12,7 +12,8 @@ class PostModelAdmin(admin.ModelAdmin):
                     ]
     list_display_links  = ['title']
     list_editable       = ['active','publish','publish_date']
-    readonly_fields = ['updated','timestamp']
+    readonly_fields 	= ['updated','timestamp']
+
     class Meta:
         model = PostModel
     

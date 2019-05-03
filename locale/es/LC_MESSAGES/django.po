@@ -211,3 +211,12 @@ msgstr "Español"
 
 msgid "English"
 msgstr "Inglés"
+
+################################################################
+# Accounts: Model
+
+msgid "City"
+msgstr "Ciudad"
+
+msgid "Users"
+msgstr "Usuarios"

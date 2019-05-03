@@ -18,48 +18,196 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: coreviews/settings.py:120
-msgid "English"
-msgstr "Inglés"
+################################################################
+# Blog: Model
 
-#: coreviews/settings.py:121
-msgid "Spanish"
-msgstr "Español"
+msgid "This title already exists, please try again."
+msgstr "Este titulo ya existe, por favor intenta otra vez."
 
-#: dashboard/templates/404.html:12
+msgid "Must be a unique title."
+msgstr "Debe ser un título único."
+
+msgid "Publish date"
+msgstr "Fecha de publicación"
+
+msgid "Update date"
+msgstr "Fecha de actualización"
+
+msgid "Creation date"
+msgstr "Fecha de creación"
+
+msgid "View count"
+msgstr "Conteo de visitas"
+
+msgid "Type of publication"
+msgstr "Tipo de publicación" 
+
+msgid "Draft"
+msgstr "Borrador"
+
+msgid "Public"
+msgstr "Pública"
+
+msgid "Private"
+msgstr "Privada"
+
+################################################################
+# Blog: forms
+
+msgid "Title"
+msgstr "Título"
+
+msgid "Content"
+msgstr "Contenido"
+
+msgid "Publish as"
+msgstr "Publicar como"
+
+################################################################
+# Blog: List
+
+msgid "List"
+msgstr "Lista"
+
+msgid "List of publications"
+msgstr "Lista de publicaciones"
+
+msgid "User"
+msgstr "Usuario"
+
+msgid "Create publication"
+msgstr "Crear publicación"
+
+msgid "Search"
+msgstr "Buscar"
+
+################################################################
+# Blog: Create
+
+msgid "Create"
+msgstr "Crear"
+
+msgid "Save"
+msgstr "Guardar"
+
+msgid "This post not exist"
+msgstr "Esta publicación no existe."
+
+msgid "Return to the Post list"
+msgstr "Volver a la lista de publicaciones"
+
+msgid "Congratulations!!! Created the POST"
+msgstr "¡¡¡Felicidades!!! Creaste la publicación"
+
+msgid "Congratulations!!! Created the POST: %(title)s"
+msgstr "¡¡¡Felicidades!!! Creaste la publicación: %(title)s"
+
+msgid "Congratulations!!! Created the POST: {}"
+msgstr "¡¡¡Felicidades!!! Creaste la publicación: {}"
+
+################################################################
+# Blog: Retrive/Detail
+
+msgid "Delete"
+msgstr "Eliminar"
+
+msgid "Details"
+msgstr "Detalles"
+
+msgid "Welcome to the publication: {}"
+msgstr "Bienvenido a la publicación: {}"
+
+msgid "The publication you are looking for does not exist"
+msgstr "La publicación que buscas no existe."
+
+################################################################
+# Blog: Edit/Update
+
+msgid "Update"
+msgstr "Actualizar"
+
+msgid "Update post"
+msgstr "Actualizar publicación"
+
+msgid "Updated the post"
+msgstr "Actualizada la publicación"
+
+msgid "The post you want edit not exist"
+msgstr "La publicación que quieres editar no existe"
+
+msgid "You updated the post"
+msgstr "Se actualizó la publicación"
+
+msgid "You updated the post: %(title)s"
+msgstr "Se actualizó la publicación: %(title)s"
+
+################################################################
+# Blog: Delete
+
+msgid "Deleted the post"
+msgstr "Eliminada la publicación"
+
+msgid "Deleted the post: {}"
+msgstr "Eliminada la publicación: {}"
+
+msgid "Yes"
+msgstr "Si"
+
+msgid "Cancel"
+msgstr "Cancelar"
+
+msgid "You are sure?"
+msgstr "¿Estás seguro?"
+
+msgid "Do you swear by your mother?"
+msgstr "¿Lo juras por tu madre?"
+
+msgid "You are sure to delete this post?"
+msgstr "¿Estás seguro de eliminar esta publicación"
+
+msgid "The post you want delete not exist"
+msgstr "La publicación que quieres eliminar no existe"
+
+################################################################
+# Dashboard: 404
+
 msgid "There is no page that you are trying to consult"
 msgstr "No existe la página que intentas consultar"
 
-#: dashboard/templates/404.html:14
 msgid "Sorry"
 msgstr "Lo siento"
 
-#: dashboard/templates/404.html:15
 msgid "Return to homepage"
 msgstr "Volver a la pagina de inicio"
 
-#: dashboard/templates/navbar.html:3
+################################################################
+# Dashboard: Navbar
+
 #, fuzzy
 #| msgid "Home Page"
 msgid "Home"
 msgstr "Página de Inicio"
 
-#: dashboard/templates/navbar.html:10 dashboard/views.py:25
 msgid "About"
 msgstr "Acerca de"
 
-#: dashboard/templates/navbar.html:13
 msgid "Features"
 msgstr "Caracteristicas"
 
-#: dashboard/templates/navbar.html:16
 msgid "Pricing"
 msgstr "Precios"
 
-#: dashboard/templates/navbar.html:19
 msgid "Disabled"
 msgstr "Acceso desactivado"
 
-#: dashboard/views.py:16
 msgid "Home Page"
 msgstr "Página de Inicio"
+
+################################################################
+# Settings:
+
+msgid "Spanish"
+msgstr "Español"
+
+msgid "English"
+msgstr "Inglés"

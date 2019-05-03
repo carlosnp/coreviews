@@ -18,66 +18,8 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: blog/forms.py:16
-msgid "Title"
-msgstr "Título"
-
-#: blog/forms.py:17
-msgid "Content"
-msgstr "Contenido"
-
-#: blog/forms.py:18
-msgid "Publish as"
-msgstr "Publicar como"
-
-#: coreviews/settings.py:120
-msgid "Spanish"
-msgstr "Español"
-
-#: coreviews/settings.py:121
-msgid "English"
-msgstr "Inglés"
-
-#: dashboard/templates/404.html:12
-msgid "There is no page that you are trying to consult"
-msgstr "No existe la página que intentas consultar"
-
-#: dashboard/templates/404.html:14
-msgid "Sorry"
-msgstr "Lo siento"
-
-#: dashboard/templates/404.html:15
-msgid "Return to homepage"
-msgstr "Volver a la pagina de inicio"
-
-#: dashboard/templates/navbar.html:3
-#, fuzzy
-#| msgid "Home Page"
-msgid "Home"
-msgstr "Página de Inicio"
-
-#: dashboard/templates/navbar.html:10 dashboard/views.py:25
-msgid "About"
-msgstr "Acerca de"
-
-#: dashboard/templates/navbar.html:13
-msgid "Features"
-msgstr "Caracteristicas"
-
-#: dashboard/templates/navbar.html:16
-msgid "Pricing"
-msgstr "Precios"
-
-#: dashboard/templates/navbar.html:19
-msgid "Disabled"
-msgstr "Acceso desactivado"
-
-#: dashboard/views.py:16
-msgid "Home Page"
-msgstr "Página de Inicio"
-
 ################################
-# Model Blog
+# Blog: Model
 
 msgid "This title already exists, please try again."
 msgstr "Este titulo ya existe, por favor intenta otra vez."
@@ -108,3 +50,140 @@ msgstr "Pública"
 
 msgid "Private"
 msgstr "Privada"
+
+#################################
+# Blog: forms
+
+msgid "Title"
+msgstr "Título"
+
+msgid "Content"
+msgstr "Contenido"
+
+msgid "Publish as"
+msgstr "Publicar como"
+
+#################################
+# Blog: List
+
+msgid "List"
+msgstr "Lista"
+
+msgid "List of publications"
+msgstr "Lista de publicaciones"
+
+msgid "User"
+msgstr "Usuario"
+
+msgid "Create publication"
+msgstr "Crear publicación"
+
+msgid "Search"
+msgstr "Buscar"
+
+#################################
+# Blog: Create
+
+msgid "Create"
+msgstr "Crear"
+
+msgid "Save"
+msgstr "Guardar"
+
+msgid "This post not exist"
+msgstr "Esta publicación no existe."
+
+msgid "Return to the Post list"
+msgstr "Volver a la lista de publicaciones"
+
+msgid "Congratulations!!! Created the POST"
+msgstr "¡¡¡Felicidades!!! Creado el POST"
+
+#################################
+# Blog: Retrive/Detail
+
+msgid "Delete"
+msgstr "Eliminar"
+
+#################################
+# Blog: Edit/Update
+
+msgid "Update"
+msgstr "Actualizar"
+
+msgid "Update post"
+msgstr "Actualizar publicación"
+
+msgid "Updated the post"
+msgstr "Actualizada la publicación"
+
+msgid "The post you want edit not exist"
+msgstr "La publicación que quieres editar no existe"
+
+#################################
+# Blog: Delete
+
+msgid "Deleted the post"
+msgstr "Eliminada la publicación"
+
+msgid "Yes"
+msgstr "Si"
+
+msgid "Cancel"
+msgstr "Cancelar"
+
+msgid "You are sure?"
+msgstr "¿Estás seguro?"
+
+msgid "Do you swear by your mother?"
+msgstr "¿Lo juras por tu madre?"
+
+msgid "You are sure to delete this post?"
+msgstr "¿Estás seguro de eliminar esta publicación"
+
+msgid "The post you want delete not exist"
+msgstr "La publicación que quieres eliminar no existe"
+
+#################################
+# Dashboard: 404
+
+msgid "There is no page that you are trying to consult"
+msgstr "No existe la página que intentas consultar"
+
+msgid "Sorry"
+msgstr "Lo siento"
+
+msgid "Return to homepage"
+msgstr "Volver a la pagina de inicio"
+
+#################################
+# Dashboard: Navbar
+
+#, fuzzy
+#| msgid "Home Page"
+msgid "Home"
+msgstr "Página de Inicio"
+
+msgid "About"
+msgstr "Acerca de"
+
+msgid "Features"
+msgstr "Caracteristicas"
+
+msgid "Pricing"
+msgstr "Precios"
+
+msgid "Disabled"
+msgstr "Acceso desactivado"
+
+msgid "Home Page"
+msgstr "Página de Inicio"
+
+#################################
+# Settings:
+
+msgid "Spanish"
+msgstr "Español"
+
+msgid "English"
+msgstr "Inglés"

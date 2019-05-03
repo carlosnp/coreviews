@@ -15,4 +15,4 @@ class PostModelForm(forms.ModelForm):
 		super().__init__(*args, **kwargs)
 		self.fields['title'].label = _('Title')
 		self.fields['content'].label = _('Content')
-		self.fields['publish'].label = _('Publish as')
+		self.fields['publish'].label = _('Type of publication')

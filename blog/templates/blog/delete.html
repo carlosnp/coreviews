@@ -1,20 +1,24 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% block title %} DELETE {% endblock %}
+{% block title %} {{ title_header }} {% endblock %}
 
 {% block content %}
-	<div class="">
+	<div class="container">
 		<div class="">
-			<a href="{% url 'posts:list'%}">Regresar a la lista de Post</a>
+			<a href="{% url 'posts:list'%}"> {% trans 'Return to the Post list' %} </a>
 		<div>
-			<h1> Desea eliminar el post: {{ object.title }}?</h1>
+			<h1> {% trans 'You are sure to delete this post?' %}</h1>
+			<h3> {{ object.title }} </h3>
 		</div>
             <form action="" method="POST" action="." class="">
 				{% csrf_token %}
-				<p>Esta Seguro?</p>
-				<input type="submit" value="Si">
-				<a href="{% url 'posts:detail' id=object.id %}">Cancelar</a>
+				<p> {% trans 'You are sure?' %}</p>
+				<p> {% trans 'Do you swear by your mother?' %} </p>
+				<div class="btn-group">
+					<button class="btn btn-danger"> {% trans 'Yes' %} </button>
+					<a class="btn btn-success" href="{% url 'posts:detail' id=object.id %}"> {% trans 'Cancel' %} </a>
+				</div>
 			</form>
 		</div>
 	</div>

@@ -65,6 +65,10 @@ msgstr "Publicar como"
 
 #################################
 # Blog: List
+
+msgid "List"
+msgstr "Lista"
+
 msgid "List of publications"
 msgstr "Lista de publicaciones"
 
@@ -79,17 +83,70 @@ msgstr "Buscar"
 
 #################################
 # Blog: Create
-msgid "Return to the Post list"
-msgstr "Volver a la lista de publicaciones"
+
+msgid "Create"
+msgstr "Crear"
 
 msgid "Save"
 msgstr "Guardar"
+
+msgid "This post not exist"
+msgstr "Esta publicación no existe."
+
+msgid "Return to the Post list"
+msgstr "Volver a la lista de publicaciones"
 
 msgid "Congratulations!!! Created the POST"
 msgstr "¡¡¡Felicidades!!! Creado el POST"
 
 #################################
+# Blog: Retrive/Detail
+
+msgid "Delete"
+msgstr "Eliminar"
+
+#################################
+# Blog: Edit/Update
+
+msgid "Update"
+msgstr "Actualizar"
+
+msgid "Update post"
+msgstr "Actualizar publicación"
+
+msgid "Updated the post"
+msgstr "Actualizada la publicación"
+
+msgid "The post you want edit not exist"
+msgstr "La publicación que quieres editar no existe"
+
+#################################
+# Blog: Delete
+
+msgid "Deleted the post"
+msgstr "Eliminada la publicación"
+
+msgid "Yes"
+msgstr "Si"
+
+msgid "Cancel"
+msgstr "Cancelar"
+
+msgid "You are sure?"
+msgstr "¿Estás seguro?"
+
+msgid "Do you swear by your mother?"
+msgstr "¿Lo juras por tu madre?"
+
+msgid "You are sure to delete this post?"
+msgstr "¿Estás seguro de eliminar esta publicación"
+
+msgid "The post you want delete not exist"
+msgstr "La publicación que quieres eliminar no existe"
+
+#################################
 # Dashboard: 404
+
 msgid "There is no page that you are trying to consult"
 msgstr "No existe la página que intentas consultar"
 
@@ -101,6 +158,7 @@ msgstr "Volver a la pagina de inicio"
 
 #################################
 # Dashboard: Navbar
+
 #, fuzzy
 #| msgid "Home Page"
 msgid "Home"
@@ -123,6 +181,7 @@ msgstr "Página de Inicio"
 
 #################################
 # Settings:
+
 msgid "Spanish"
 msgstr "Español"
 

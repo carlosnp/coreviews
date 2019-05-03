@@ -19,13 +19,14 @@ def post_create_view(request):
     if form.is_valid():
         instance = form.save(commit = False)
         instance.save()
-        messages.success(request, "Congratulations!!! Created the POST: %s" % instance.title)
+        msj = _("Congratulations!!! Created the POST")
+        messages.success(request, msj+": %s" % instance.title)
         try:
             return HttpResponseRedirect(instance.get_absolute_url())
         except:
             return redirect("posts:list")
     context = {
-        "title_header": 'Create',
+        "title_header": _('Create'),
         "title": _("Create publication"),
         "form": form
     }
@@ -38,7 +39,7 @@ def post_detail_view(request, id):
 		instance = PostModel.objects.get(id=id)
 	except:
 		template_names 	= "404.html"
-		detail_comment = "El Post que buscas no existe"
+		detail_comment = _("This post not exist")
 		contextdata = {
 			"detail_comment": detail_comment,
 			}
@@ -57,7 +58,7 @@ def post_update_view(request, id=None):
     	instance = PostModel.objects.get(id=id)
     except:
     	template_names 	= "404.html"
-    	detail_comment = "El post que deseas editar no existe"
+    	detail_comment = _("The post you want edit not exist")
     	contextdata = {
     		"detail_comment": detail_comment,
     	}
@@ -68,12 +69,13 @@ def post_update_view(request, id=None):
     if form.is_valid():
         instance = form.save(commit = False)
         instance.save()
-        messages.success(request, "Actualizaste el POST: %s" % instance.title)
+        msj = _("Updated the post")
+        messages.success(request, msj+": %s" % instance.title)
         return redirect("posts:detail", id=id)
     # Contexto
     context = {
-        "title_header": 'Update',
-    	"title":'Actualizar post',
+        "title_header": _('Update'),
+    	"title":_('Update post'),
     	"articles": instance,
     	"form": form
     }
@@ -82,20 +84,25 @@ def post_update_view(request, id=None):
 # Delete
 def posts_delete_view(request, id=None):
     template_name = 'blog/delete.html'
+    
     try:
         obj = PostModel.objects.get(id=id)
     except:
         template_names 	= "404.html"
-        detail_comment = "El post que deseas Eliminar no existe"
+        detail_comment = _("The post you want delete not exist")
         contextdata = { 
             "detail_comment": detail_comment,
         }
         return render(request, template_names, contextdata, status = 404)
     if request.method == "POST":
         obj.delete()
-        messages.success(request, "Eliminaste el Post: %s" % obj.title)
+        msj = _("Deleted the post")
+        messages.success(request, msj+": %s" % obj.title)
         return redirect("posts:list")
+    
+    title_header = _("Delete")
     context = {
+        "title_header": title_header,
         "object": obj,
     }
     return render(request, template_name, context)
@@ -119,6 +126,7 @@ def post_list_view(request):
     context = {
         "objects": qs,
         "users_qs": users_qs,
+        "title_header": _("List"), 
     }
     return render(request, template_name, context)
 

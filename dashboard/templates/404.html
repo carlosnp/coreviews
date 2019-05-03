@@ -1,16 +1,17 @@
 {% extends "base.html" %}
+{% load i18n %}
 
 {% block title %} Error 404 {% endblock %}
 
 {% block content %}
 	<div style="margin: 10px auto; padding: 20px; width: 50%;">
-    	<h1 style="font-size: 8vw;">Error 404</h1>
+    	<h1 style="font-size: 8vw;color:red;">Error 404 !!!</h1>
     	{% if detail_comment %}
     		<p style="font-size: 2vw; color: blue;"> {{ detail_comment }}</p>
     	{% else %}
-    		<p style="font-size: 2vw;">No Existe la página que intentas consultar</p>
+    		<p style="font-size: 2vw;"> {% trans 'There is no page that you are trying to consult' %} </p>
     	{% endif %}
-    	<p>Lo siento!!!</p>
-    	<a href="{% url 'dashboards:home' %}">Volver al inicio</a>
+    	<p> {% trans 'Sorry' %}!!!</p>
+    	<a href="{% url 'dashboards:home' %}"> {% trans 'Return to homepage' %} </a>
 	</div>
 {% endblock content %}

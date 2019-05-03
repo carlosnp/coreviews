@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load i18n %}
 
 {% block title %} {{ title_header }} {% endblock %}
 
@@ -7,12 +8,12 @@
 		<div class="">
 		<div>
 		<h1> {{ title }} </h1>
-		<a href="{% url 'posts:list'%}">Regresar a la lista de Post</a>
+		<a href="{% url 'posts:list'%}"> {% trans 'Return to the Post list' %} </a>
 		</div>
 			<form action="" method="POST" enctype="multipart/form-data" class="site-form">
 				{% csrf_token %}
 				{{ form.as_p }}
-				<button class="site-buttom" type="submit">Guardar</button>
+				<button class="site-buttom" type="submit"> {% trans 'Save' %} </button>
 			</form>
 		</div>
 	</div>

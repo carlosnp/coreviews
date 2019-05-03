@@ -1,6 +1,7 @@
 {% extends "base.html" %}
+{% load i18n %}
 
-{% block title %} POST {% endblock %}
+{% block title %} {{ title_header }} {% endblock %}
 
 {% block content %}
 	<div class="container">
@@ -10,11 +11,13 @@
                 <h4> {{ object.slug }} </h4>
 			</div>
 			<p style="text-align: justify;"> {{ object.content }} </p>
-			<p style="color: grey;">Fecha de creación: {{ object.timestamp }}</p>
-			<p style="color: #3a8688;">Fecha de actualización: {{ object.updated }}</p>
+			<p style="color: grey;"> {% trans 'Publish date' %}: {{ object.publish_date }}</p>
+			<p style="color: #3a8688;"> {% trans 'Update date' %}: {{ object.updated }}</p>
 		</div>
-		<a href="{% url 'posts:list'%}">Regresar a la lista de posts</a>
-		<a href="{% url 'posts:update' pk=object.id %}">Actualizar</a>
-		<a href="{% url 'posts:delete' pk=object.id %}">Eliminar</a>
+		<div class="btn-group">
+			<a class="btn btn-primary" href="{% url 'posts:list'%}">{% trans 'List of publications' %}</a>
+			<a class="btn btn-primary" href="{% url 'posts:update' pk=object.id %}">{% trans 'Update' %}</a>
+			<a class="btn btn-primary" href="{% url 'posts:delete' pk=object.id %}">{% trans 'Delete' %}</a>
+		</div>
 	</div>
 {% endblock content %}

@@ -10,6 +10,8 @@ from django.views.generic import (CreateView,
 								  UpdateView, 
 								  DeleteView, 
 								  ListView)
+from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy as _l
 from django.contrib.messages.views import SuccessMessageMixin
 
 # Project
@@ -21,12 +23,12 @@ class Blog_Create_View(SuccessMessageMixin, CreateView):
 	template_name = "blog/create.html"
 	form_class = PostModelForm
 	model = PostModel
-	success_message = "Creaste el POST: %(title)s"		
+	success_message = _l("Congratulations!!! Created the POST: %(title)s")
 
 	# Context Data
 	def get_context_data(self, *args,**kwargs):
 		context = super(Blog_Create_View,self).get_context_data(*args,**kwargs)
-		context["title"] = "Crear Post"
+		context["title"] = _("Create publication")
 		return context
 
 	# Formulario valido
@@ -42,43 +44,43 @@ class Blog_Detail_View(DetailView):
 	# Metodo que toma la solicitud y devuelve la respuesta   
     def dispatch(self, request, *args, **kwargs):
     	try:
-    		messages.success(self.request, "Bienvenido al Post: {}".format(self.get_object().title))
-    		return super(Blog_Detail_View, self).dispatch(request, *args, **kwargs)
+		    # messages.success(self.request, _("Welcome to the publication: {}").format(self.get_object().title))
+		    messages.success(self.request, _("{}").format(self.get_object().title))
+		    return super(Blog_Detail_View, self).dispatch(request, *args, **kwargs)
     	except:
-    		template_names 	= "404.html"
-    		detail_comment = "El Post que buscas no existe"
-    		contextdata = {"detail_comment": detail_comment,}
-    		return render(request, template_names, contextdata, status = 404)
+		    template_names 	= "404.html"
+		    detail_comment = _l("The publication you are looking for does not exist")
+		    contextdata = {"detail_comment": detail_comment,}
+		    return render(request, template_names, contextdata, status = 404)
 
     # Context Data
     def get_context_data(self, **kwargs):
-        qs = super(Blog_Detail_View, self).get_context_data(**kwargs)
-        return qs
+        context = super(Blog_Detail_View, self).get_context_data(**kwargs)
+        context["title_header"] = _("Details")
+        return context
 
 # Update
 class Blog_Update_View(SuccessMessageMixin, UpdateView):
 	template_name = "blog/create.html"
 	queryset = PostModel.objects.all()
 	form_class = PostModelForm
-	success_message = "Actualizaste el POST: %(title)s el dia %(fecha)s"
+	# success_message = _l("You updated the post")
+	success_message = _l("You updated the post: %(title)s")
 
 	def dispatch(self, request, *args, **kwargs):
 		try:
 			return super(Blog_Update_View, self).dispatch(request, *args, **kwargs)
 		except:
 			template_names 	= "404.html"
-			detail_comment = "El post que deseas editar no existe"
+			detail_comment = _("The post you want edit not exist")
 			contextdata = {"detail_comment": detail_comment,}
 			return render(request, template_names, contextdata, status = 404)
 
 	# Context Data
 	def get_context_data(self, *args,**kwargs):
 		context = super(Blog_Update_View,self).get_context_data(*args,**kwargs)
-		context["title"] = "Editar Post"
+		context["title"] = _("Update post")
 		return context
-
-	def get_success_message(self, cleaned_data):
-		return self.success_message % dict(cleaned_data,fecha=self.object.updated.strftime("%d-%m-%Y"))
 
 # Delete
 class Blog_Delete_View(DeleteView):
@@ -91,12 +93,18 @@ class Blog_Delete_View(DeleteView):
 			return super(Blog_Delete_View, self).dispatch(request, *args, **kwargs)
 		except:
 			template_names 	= "404.html"
-			detail_comment = "El post que deseas Eliminar no existe"
+			detail_comment = _("The post you want delete not exist")
 			contextdata = {"detail_comment": detail_comment,}
 			return render(request, template_names, contextdata, status = 404)
+	
+	def get_context_data(self, *args,**kwargs):
+		context = super(Blog_Delete_View, self).get_context_data(*args,**kwargs)
+		context["title_header"] = _("Delete")
+		return context
+	
 
 	def get_success_url(self):
-		messages.success(self.request, "Eliminaste el Post: {}".format(self.get_object().title))
+		messages.success(self.request, _("Deleted the post: {}").format(self.get_object().title))
 		return reverse_lazy("posts:list")
     
 # List
@@ -113,4 +121,5 @@ class Blog_List_View(ListView):
     def get_context_data(self, *args,**kwargs):
         context = super(Blog_List_View,self).get_context_data(*args,**kwargs)
         context["users_qs"] = self.request.user
+        context["title_header"] = _("List")
         return context

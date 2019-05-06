@@ -26,7 +26,7 @@ class MyUserManager(BaseUserManager):
         birth and password.
         """
         if not email:
-            raise ValueError('Users must have an email address')
+            raise ValueError(_('Users must have an email address'))
 
         user = self.model(
             username = username,
@@ -62,7 +62,7 @@ class RegisterUser(AbstractBaseUser):
         max_length=150,
         validators = [RegexValidator(
             regex = USERNMAE_REDEX,
-            message = _l('Username must be Alphanumeric or contain any of the following special characters: ')+'. @ + -',
+            message = _l("Username must be Alphanumeric or contain any of the following special characters: . @ + -"),
             code = "invalid_username",
             )
         ],
@@ -96,7 +96,7 @@ class RegisterUser(AbstractBaseUser):
         verbose_name_plural = _l('Register users')
 
     def __str__(self):
-        return self.email
+        return self.username
     
     def get_full_name(self):
         return self.username
@@ -119,3 +119,35 @@ class RegisterUser(AbstractBaseUser):
     #     "Is the user a member of staff?"
     #     # Simplest possible answer: All admins are staff
     #     return self.is_admin
+
+# Perfil de Usuario
+class Profile(models.Model):
+    user = models.OneToOneField(
+                    settings.AUTH_USER_MODEL, 
+                    verbose_name=_l("User"), 
+                    on_delete=models.CASCADE)
+    city = models.CharField(
+                    max_length=150,
+                    verbose_name=_l("City"), 
+                    null=True, 
+                    blank=True)
+    class Meta:
+        verbose_name = _l("Profile")
+        verbose_name_plural = _l("Profile users")
+
+    def __str__(self):
+        return self.user.username
+    
+    def __unicode__(self):
+        return self.user.username
+    
+    # def get_absolute_url(self):
+    #     return reverse("_detail", kwargs={"pk": self.pk})
+
+# post_save
+def accounts_user_model_post_save_receiver(sender, instance, created, *args, **kwargs):
+    try:
+        Profile.objects.create(user=instance)
+    except:
+        pass
+post_save.connect(accounts_user_model_post_save_receiver, sender = settings.AUTH_USER_MODEL)

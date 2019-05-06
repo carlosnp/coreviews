@@ -8,10 +8,10 @@ from django.utils.translation import gettext as _
 from django.utils.translation import ugettext_lazy as _l
 
 # Project
-from .models import RegisterUser
+from .models import RegisterUser, Profile
 from .forms import UserCreationForm, UserChangeForm
 
-class AccountsAdmin(BaseUserAdmin):
+class RegisterAdmin(BaseUserAdmin):
     # The forms to add and change user instances
     form = UserChangeForm
     add_form = UserCreationForm
@@ -37,7 +37,11 @@ class AccountsAdmin(BaseUserAdmin):
     search_fields = ('username','email',)
     ordering = ('username','email',)
     filter_horizontal = ()
-    
+
+class ProfileAdmin(admin.ModelAdmin):
+     list_display = ['user', 'city']
+
 # Admin Register
-admin.site.register(RegisterUser, AccountsAdmin)
+admin.site.register(RegisterUser, RegisterAdmin)
+admin.site.register(Profile, ProfileAdmin)
 admin.site.unregister(Group)

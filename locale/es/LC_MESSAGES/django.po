@@ -220,3 +220,54 @@ msgstr "Ciudad"
 
 msgid "Users"
 msgstr "Usuarios"
+
+msgid "User Name"
+msgstr "Nombre de Usuario"
+
+msgid "Email"
+msgstr "Correo Electrónico"
+
+msgid "Date of birth"
+msgstr "Fecha de nacimiento"
+
+msgid "First name"
+msgstr "Primer Nombre"
+
+msgid "Last name"
+msgstr "Apellido"
+
+msgid "Is active"
+msgstr "Está activo"
+
+msgid "Is staff"
+msgstr "Es empleado"
+
+msgid "Is admin"
+msgstr "Es Administrador"
+
+msgid "Register user"
+msgstr "Registro de usuario"
+
+msgid "Register users"
+msgstr "Registro de usuarios"
+
+msgid "Password"
+msgstr "Contraseña"
+
+msgid "Password confirmation"
+msgstr "Confirmar contraseña"
+
+msgid "Passwords don't match"
+msgstr "Las contraseñas no coinciden"
+
+msgid "Zip code"
+msgstr "Código postal"
+
+msgid "Personal info"
+msgstr "Información personal"
+
+msgid "Permissions"
+msgstr "Permisos"
+
+msgid "Username must be Alphanumeric or contain any of the following special characters: "
+msgstr "El nombre de usuario debe ser alfanumérico o contener cualquiera de los siguientes caracteres especiales: "

@@ -47,6 +47,8 @@ PROJECT_APPS = [
     'dashboard'
 ]
 
+AUTH_USER_MODEL = 'accounts.RegisterUser'
+
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS
 
 MIDDLEWARE = [

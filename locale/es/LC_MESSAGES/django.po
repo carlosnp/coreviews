@@ -267,6 +267,9 @@ msgstr "Información personal"
 msgid "Permissions"
 msgstr "Permisos"
 
+msgid "Register"
+msgstr "Registrar"
+
 msgid "Profile"
 msgstr "Perfil de usuario"
 

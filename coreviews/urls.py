@@ -27,6 +27,7 @@ urlpatterns = i18n_patterns(
     path('admin/', admin.site.urls),
     path('i18n/', include('django.conf.urls.i18n')),
     path('', include('dashboard.urls', namespace="dashboards")),
+    path('', include('accounts.urls', namespace="accounts")),
     path('404/',  django.views.defaults.page_not_found, kwargs={'exception': Exception('Page Not Found!')},name='Error404'),
 )
 

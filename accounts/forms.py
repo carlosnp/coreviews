@@ -3,15 +3,17 @@ from django import forms
 # Django Translation
 from django.utils.translation import gettext as _
 from django.utils.translation import ugettext_lazy as _l
-
 # Django Example
 from django.contrib import admin
+from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Group
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 
+# Project
 from .models import RegisterUser
 
+User = get_user_model()
 
 class UserCreationForm(forms.ModelForm):
     """A form for creating new users. Includes all the required
@@ -20,7 +22,7 @@ class UserCreationForm(forms.ModelForm):
     password2 = forms.CharField(label=_l('Password confirmation'), widget=forms.PasswordInput)
 
     class Meta:
-        model = RegisterUser
+        model = User
         fields = ('username','email')
 
     def clean_password2(self):
@@ -48,7 +50,7 @@ class UserChangeForm(forms.ModelForm):
     password = ReadOnlyPasswordHashField()
 
     class Meta:
-        model = RegisterUser
+        model = User
         fields = ('username', 'email', 'password','is_active', 'is_staff', 'is_admin')
 
     def clean_password(self):

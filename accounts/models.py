@@ -18,6 +18,10 @@ from django.utils.translation import ugettext_lazy as _l
 # Modelo de Ejemplo de Django
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
 
+# Validador del nombre de usuario
+USERNMAE_REDEX = '^[a-zA-Z0-9.@+-]*$'
+message_register = _l('Username must be Alphanumeric or contain any of the following special characters: . @ + -')
+
 class MyUserManager(BaseUserManager):
 
     def create_user(self, username, email, password=None):
@@ -52,17 +56,13 @@ class MyUserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-
-# Validador del nombre de usuario
-USERNMAE_REDEX = '^[a-zA-Z0-9.@+-]*$'
-
 class RegisterUser(AbstractBaseUser):
     username = models.CharField(
         verbose_name=_l("User Name"), 
         max_length=150,
         validators = [RegexValidator(
             regex = USERNMAE_REDEX,
-            message = _l("Username must be Alphanumeric or contain any of the following special characters: . @ + -"),
+            message = message_register,
             code = "invalid_username",
             )
         ],

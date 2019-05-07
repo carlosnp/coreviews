@@ -1,5 +1,7 @@
 # Django
 from django import forms
+# Validadores
+from django.core.validators import RegexValidator
 # Django Translation
 from django.utils.translation import gettext as _
 from django.utils.translation import ugettext_lazy as _l
@@ -11,10 +13,39 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 
 # Project
-from .models import RegisterUser
+from .models import RegisterUser, USERNMAE_REDEX, message_register
 
 User = get_user_model()
 
+# Formulario para iniciar sesion
+class UserLoginForm(forms.Form):
+    username = forms.CharField(
+        label=_l("User Name"), 
+        max_length=150,
+        validators = [RegexValidator(
+            regex = USERNMAE_REDEX,
+            message = message_register,
+            code = "invalid_username",
+            )
+        ],
+        required=True)
+    password = forms.CharField(
+        label=_l('Password'), 
+        widget=forms.PasswordInput)
+
+    def clean(self, *args, **kwargs):
+        username = self.cleaned_data.get("username")
+        password = self.cleaned_data.get("password")
+        user_obj = User.objects.filter(username=username).first()
+        # Si el usuario no existe
+        if not user_obj:
+            raise forms.ValidationError(_l("This user not exist"))
+        # 
+        if not user_obj.check_password(password):
+            raise forms.ValidationError(_l("Invalid password"))
+        return super(UserLoginForm, self).clean(*args, **kwargs)
+    
+# Crear usuario
 class UserCreationForm(forms.ModelForm):
     """A form for creating new users. Includes all the required
     fields, plus a repeated password."""
@@ -30,7 +61,7 @@ class UserCreationForm(forms.ModelForm):
         password1 = self.cleaned_data.get("password1")
         password2 = self.cleaned_data.get("password2")
         if password1 and password2 and password1 != password2:
-            raise forms.ValidationError("Passwords don't match")
+            raise forms.ValidationError(_l("Passwords don't match"))
         return password2
 
     def save(self, commit=True):

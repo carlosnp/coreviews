@@ -216,12 +216,6 @@ msgstr "Inglés"
 msgid "City"
 msgstr "Ciudad"
 
-msgid "Users"
-msgstr "Usuarios"
-
-msgid "User Name"
-msgstr "Nombre de Usuario"
-
 msgid "Email"
 msgstr "Correo Electrónico"
 
@@ -243,23 +237,17 @@ msgstr "Es empleado"
 msgid "Is admin"
 msgstr "Es Administrador"
 
-msgid "Register user"
-msgstr "Registro de usuario"
+msgid "Invalid password"
+msgstr "Contraseña invalida"
 
-msgid "Register users"
-msgstr "Registro de usuarios"
+msgid "Login"
+msgstr "Iniciar sesión"
+
+msgid "Logout"
+msgstr "Cerrar sesión"
 
 msgid "Password"
 msgstr "Contraseña"
-
-msgid "Password confirmation"
-msgstr "Confirmar contraseña"
-
-msgid "Passwords don't match"
-msgstr "Las contraseñas no coinciden"
-
-msgid "Zip code"
-msgstr "Código postal"
 
 msgid "Personal info"
 msgstr "Información personal"
@@ -267,17 +255,44 @@ msgstr "Información personal"
 msgid "Permissions"
 msgstr "Permisos"
 
-msgid "Register"
-msgstr "Registrar"
-
 msgid "Profile"
 msgstr "Perfil de usuario"
 
+msgid "Password confirmation"
+msgstr "Confirmar contraseña"
+
+msgid "Passwords don't match"
+msgstr "Las contraseñas no coinciden"
+
 msgid "Profile users"
 msgstr "Perfiles de los usuarios"
+
+msgid "Register user"
+msgstr "Registro de usuario"
+
+msgid "Register users"
+msgstr "Registro de usuarios"
+
+msgid "Register"
+msgstr "Registrar"
+
+msgid "Sign in"
+msgstr "Registrarse"
+
+msgid "This user not exist"
+msgstr "Este usuario no existe"
+
+msgid "Users"
+msgstr "Usuarios"
+
+msgid "User Name"
+msgstr "Nombre de Usuario"
 
 msgid "Users must have an email address"
 msgstr "Los usuarios deben tener una dirección de correo electrónico"
 
 msgid "Username must be Alphanumeric or contain any of the following special characters:  . @ + -"
 msgstr "El nombre de usuario debe ser alfanumérico o contener cualquiera de los siguientes caracteres especiales: . @ + -"
+
+msgid "Zip code"
+msgstr "Código postal"

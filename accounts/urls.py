@@ -1,13 +1,14 @@
 # Django
 from django.urls import path, include
 # Project
-from .views import RegisterFormView
+from .views import RegisterFormView, LoginView, LogoutView
 
 app_name = "accounts"
 
 urlpatterns = [
     path("register/", RegisterFormView, name="register"),
-    # path("about/", AboutView.as_view(), name="about")
+    path("login/", LoginView, name="login"),
+    path("logout/", LogoutView, name="logout"),
     # path('', post_list_view, name="list"),
     # path('create/', post_create_view, name="create"),
     # path('<int:id>/', post_detail_view, name="detail"),

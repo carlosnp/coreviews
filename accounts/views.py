@@ -1,4 +1,5 @@
 # Django
+from django.contrib import messages
 from django.shortcuts import render, redirect
 # Django Translation
 from django.utils.translation import gettext as _
@@ -26,6 +27,7 @@ def LoginView(request, *args, **kwargs):
         return redirect("dashboards:home")
     context = {
         "title": _("Login"),
+        "login" : True,
         "form": form
     }
     return render(request, template_name, context)
@@ -39,9 +41,19 @@ def RegisterFormView(request, *args, **kwargs):
         password = form.cleaned_data.get('password1')
         user.set_password(password)
         user.save()
+        messages.info(request, _("Created user"))
         return redirect("dashboards:home")
+    # Para que se muestren los errores  
+    else:
+        if form['username'].errors:
+            messages.error(request, form['username'].errors)
+        if form['email'].errors:
+            messages.error(request, form['email'].errors)
+        if form['password2'].errors:
+            messages.error(request, form['password2'].errors)
     context = {
         "title": _("Sign in"),
+        "login" : False,
         "form": form
     }
     return render(request, template_name, context)

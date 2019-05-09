@@ -32,6 +32,11 @@ class UserLoginForm(forms.Form):
     password = forms.CharField(
         label=_l('Password'), 
         widget=forms.PasswordInput)
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['username'].widget.attrs.update({'class': 'form-control', 'placeholder': _('User Name')})
+        self.fields['password'].widget.attrs.update({'class': 'form-control', 'placeholder': _('Password')})
 
     def clean(self, *args, **kwargs):
         username = self.cleaned_data.get("username")
@@ -55,6 +60,29 @@ class UserCreationForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('username','email')
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['username'].widget.attrs.update({'class': 'form-control', 'placeholder': _('User Name')})
+        self.fields['email'].widget.attrs.update({'class': 'form-control', 'placeholder': _('Email')})
+        self.fields['password1'].widget.attrs.update({'class': 'form-control', 'placeholder': _('Password')})
+        self.fields['password2'].widget.attrs.update({'class': 'form-control', 'placeholder': _('Password')})
+
+    def clean_username(self):
+        username = self.cleaned_data.get("username")
+        try:
+            user = User.objects.exclude(pk=self.instance.pk).get(username=username)
+        except User.DoesNotExist:
+            return username
+        raise forms.ValidationError(_("Username '%s' is already in use.") % username.upper())
+    
+    def clean_email(self):
+        email = self.cleaned_data.get("email")
+        try:
+            user = User.objects.exclude(pk=self.instance.pk).get(email=email)
+        except User.DoesNotExist:
+            return email
+        raise forms.ValidationError(_("Email <%s> is already in use.") % email.lower())
 
     def clean_password2(self):
         # Check that the two password entries match

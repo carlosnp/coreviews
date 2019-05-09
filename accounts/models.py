@@ -20,7 +20,7 @@ from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
 
 # Validador del nombre de usuario
 USERNMAE_REDEX = '^[a-zA-Z0-9.@+-]*$'
-message_register = _l('Username must be Alphanumeric or contain any of the following special characters: . @ + -')
+message_register = _l("Username must be Alphanumeric or contain any of the following special characters:  . @ + -")
 
 class MyUserManager(BaseUserManager):
 

@@ -216,11 +216,17 @@ msgstr "Inglés"
 msgid "City"
 msgstr "Ciudad"
 
+msgid "Created user"
+msgstr "Usuario creado"
+
 msgid "Email"
 msgstr "Correo Electrónico"
 
 msgid "Date of birth"
 msgstr "Fecha de nacimiento"
+
+msgid "Email <%s> is already in use."
+msgstr "El Correo Electrónico <%s> ya está en uso."
 
 msgid "First name"
 msgstr "Primer Nombre"
@@ -287,6 +293,9 @@ msgstr "Usuarios"
 
 msgid "User Name"
 msgstr "Nombre de Usuario"
+
+msgid "Username '%s' is already in use."
+msgstr "El nombre de usuario '%s' ya está en uso."
 
 msgid "Users must have an email address"
 msgstr "Los usuarios deben tener una dirección de correo electrónico"

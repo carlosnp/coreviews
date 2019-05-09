@@ -25,6 +25,9 @@ def LoginView(request, *args, **kwargs):
         user	 = authenticate(username=username, password=password)
         login(request, user)
         return redirect("dashboards:home")
+    else:
+        if form['password'].errors:
+            messages.error(request, form['password'].errors)
     context = {
         "title": _("Login"),
         "login" : True,

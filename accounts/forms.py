@@ -44,11 +44,23 @@ class UserLoginForm(forms.Form):
         user_obj = User.objects.filter(username=username).first()
         # Si el usuario no existe
         if not user_obj:
+            print("usuario no existe")
             raise forms.ValidationError(_l("This user not exist"))
-        # 
-        if not user_obj.check_password(password):
-            raise forms.ValidationError(_l("Invalid password"))
+        else:
+            print(user_obj.check_password(password))
+            # Si la contraseña es incorrecta
+            if not user_obj.check_password(password):
+                print("Hola")
+                raise forms.ValidationError(_l("Invalid password"))
         return super(UserLoginForm, self).clean(*args, **kwargs)
+    
+    # def clean_username(self):
+    #     username = self.cleaned_data.get("username")
+    #     user_qs = User.objects.filter(username=username)
+    #     user_exists = user_qs.exists()
+    #     if not user_exists and user_qs.count() != 1:
+    #         raise forms.ValidationError(_l("This user not exist"))
+    #     return username
     
 # Crear usuario
 class UserCreationForm(forms.ModelForm):

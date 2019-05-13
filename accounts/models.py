@@ -58,7 +58,7 @@ class MyUserManager(BaseUserManager):
 
 class RegisterUser(AbstractBaseUser):
     username = models.CharField(
-        verbose_name=_l("User Name"), 
+        verbose_name=_l("Username"), 
         max_length=150,
         validators = [RegexValidator(
             regex = USERNMAE_REDEX,

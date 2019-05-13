@@ -291,8 +291,17 @@ msgstr "Este usuario no existe"
 msgid "Users"
 msgstr "Usuarios"
 
-msgid "User Name"
+msgid "Username or Email"
+msgstr "Nombre de usuario o correo electrónico"
+
+msgid "Username"
 msgstr "Nombre de Usuario"
+
+msgid "The user '%s' not exist"
+msgstr "El usuario '%s' no existe"
+
+msgid "This user does not exist, please register"
+msgstr "Este usuario no existe, por favor registrate"
 
 msgid "Username '%s' is already in use."
 msgstr "El nombre de usuario '%s' ya está en uso."

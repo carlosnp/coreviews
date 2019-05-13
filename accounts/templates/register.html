@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class="container">
-    <h1> {{ title }} </h1>
+    <h1 style=""> {{ title }} </h1>
     <form action="" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="form-row">
@@ -13,7 +13,7 @@
                 <label for=""> {{ form.username.label }} </label>
                 {{ form.username }}
                 {% if form.username.errors %}
-                    {% for error in form.username.errors %}
+                    {% for error in form.errors.username %}
                         <p style="color:red;"> {{ error }} </p>
                     {% endfor %}
                 {% endif %}
@@ -24,7 +24,7 @@
                     <label for=""> {{ form.password.label }} </label>
                     {{ form.password }}
                     {% if form.password.errors %}
-                        {% for error in form.password.errors %}
+                        {% for error in form.errors.password %}
                             <p style="color:red;"> {{ error }} </p>
                         {% endfor %}
                     {% endif %}

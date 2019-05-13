@@ -20,7 +20,7 @@ User = get_user_model()
 # Formulario para iniciar sesion
 class UserLoginForm(forms.Form):
     username = forms.CharField(
-        label=_l("User Name"), 
+        label=_l("Username or Email"), 
         max_length=150,
         validators = [RegexValidator(
             regex = USERNMAE_REDEX,
@@ -35,33 +35,25 @@ class UserLoginForm(forms.Form):
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['username'].widget.attrs.update({'class': 'form-control', 'placeholder': _('User Name')})
+        self.fields['username'].widget.attrs.update({'class': 'form-control', 'placeholder': _('Username')})
         self.fields['password'].widget.attrs.update({'class': 'form-control', 'placeholder': _('Password')})
 
-    def clean(self, *args, **kwargs):
+    def clean_username(self):
         username = self.cleaned_data.get("username")
-        password = self.cleaned_data.get("password")
-        user_obj = User.objects.filter(username=username).first()
-        # Si el usuario no existe
-        if not user_obj:
-            print("usuario no existe")
-            raise forms.ValidationError(_l("This user not exist"))
-        else:
-            print(user_obj.check_password(password))
-            # Si la contraseña es incorrecta
-            if not user_obj.check_password(password):
-                print("Hola")
-                raise forms.ValidationError(_l("Invalid password"))
-        return super(UserLoginForm, self).clean(*args, **kwargs)
+        user_q = User.objects.filter(username=username)
+        user_exists = user_q.exists()
+        if not user_exists and user_q.count() != 1:
+            raise forms.ValidationError(_l("The user '%s' not exist") % username.upper())
+        return username
     
-    # def clean_username(self):
-    #     username = self.cleaned_data.get("username")
-    #     user_qs = User.objects.filter(username=username)
-    #     user_exists = user_qs.exists()
-    #     if not user_exists and user_qs.count() != 1:
-    #         raise forms.ValidationError(_l("This user not exist"))
-    #     return username
-    
+    def clean_password(self):
+        username = self.cleaned_data.get("username")
+        password = self.cleaned_data.get('password')
+        user_qs = User.objects.get(username=username)
+        if not user_qs.check_password(password):
+            raise forms.ValidationError(_l("Invalid password"))
+        return password
+
 # Crear usuario
 class UserCreationForm(forms.ModelForm):
     """A form for creating new users. Includes all the required
@@ -75,7 +67,7 @@ class UserCreationForm(forms.ModelForm):
     
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['username'].widget.attrs.update({'class': 'form-control', 'placeholder': _('User Name')})
+        self.fields['username'].widget.attrs.update({'class': 'form-control', 'placeholder': _('Username')})
         self.fields['email'].widget.attrs.update({'class': 'form-control', 'placeholder': _('Email')})
         self.fields['password1'].widget.attrs.update({'class': 'form-control', 'placeholder': _('Password')})
         self.fields['password2'].widget.attrs.update({'class': 'form-control', 'placeholder': _('Password')})

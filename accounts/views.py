@@ -10,6 +10,8 @@ from django.contrib.auth import authenticate, get_user_model, login, logout
 # Project
 from .forms import UserCreationForm, UserChangeForm, UserLoginForm
 
+User = get_user_model()
+
 # Cerrar Sesion
 def LogoutView(request):
 	logout(request)
@@ -22,10 +24,19 @@ def LoginView(request, *args, **kwargs):
     if form.is_valid():
         username = form.cleaned_data.get("username")
         password = form.cleaned_data.get("password")
-        user	 = authenticate(username=username, password=password)
-        login(request, user)
-        return redirect("dashboards:home")
+        user_q = User.objects.filter(username=username).exists()
+        if user_q is not None and user_q:
+            user = authenticate(username=username, password=password)
+            login(request, user)
+            return redirect("dashboards:home")
+        else:
+            pass
+            # messages.error(request, form['username'].errors)
+            # messages.warning(request, _('This user does not exist, please register'))
+            # return redirect("accounts:register")
     else:
+        if form['username'].errors:
+            messages.error(request, form['username'].errors)
         if form['password'].errors:
             messages.error(request, form['password'].errors)
     context = {

@@ -49,8 +49,8 @@ class UserLoginForm(forms.Form):
     def clean_password(self):
         username = self.cleaned_data.get("username")
         password = self.cleaned_data.get('password')
-        user_qs = User.objects.get(username=username)
-        if not user_qs.check_password(password):
+        user_qs = User.objects.filter(username=username).first()
+        if user_qs is not None and not user_qs.check_password(password):
             raise forms.ValidationError(_l("Invalid password"))
         return password
 

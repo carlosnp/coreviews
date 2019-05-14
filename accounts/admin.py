@@ -8,7 +8,7 @@ from django.utils.translation import gettext as _
 from django.utils.translation import ugettext_lazy as _l
 
 # Project
-from .models import RegisterUser, Profile
+from .models import RegisterUser, Profile, ActivationProfile
 from .forms import UserCreationForm, UserChangeForm
 
 class RegisterAdmin(BaseUserAdmin):
@@ -44,4 +44,5 @@ class ProfileAdmin(admin.ModelAdmin):
 # Admin Register
 admin.site.register(RegisterUser, RegisterAdmin)
 admin.site.register(Profile, ProfileAdmin)
+admin.site.register(ActivationProfile)
 admin.site.unregister(Group)

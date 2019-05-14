@@ -9,6 +9,7 @@ from django.contrib.auth import authenticate, get_user_model, login, logout
 
 # Project
 from .forms import UserCreationForm, UserChangeForm, UserLoginForm
+from .models import ActivationProfile
 
 User = get_user_model()
 
@@ -24,15 +25,17 @@ def LoginView(request, *args, **kwargs):
     if form.is_valid():
         username = form.cleaned_data.get("username")
         password = form.cleaned_data.get("password")
-        user_q = User.objects.filter(username=username).exists()
+        try:
+            user_q = User.objects.filter(username=username)
+        except User.DoesNotExist:
+            user_q = None
         if user_q is not None and user_q:
             user = authenticate(username=username, password=password)
             login(request, user)
             return redirect("dashboards:home")
         else:
-            pass
             # messages.error(request, form['username'].errors)
-            # messages.warning(request, _('This user does not exist, please register'))
+            messages.warning(request, _('This user does not exist, please register'))
             # return redirect("accounts:register")
     else:
         if form['username'].errors:
@@ -71,3 +74,17 @@ def RegisterFormView(request, *args, **kwargs):
         "form": form
     }
     return render(request, template_name, context)
+
+# Activacion del perfil
+def activate_user_view(request, code=None, *args, **kwargs):
+    if code:
+        activate_profile_qs = ActivationProfile.objects.filter(key=code)
+        if activate_profile_qs.exists() and activate_profile_qs.count() == 1:
+            activate_obj = activate_profile_qs.first()
+            if not activate_obj.expired:
+                user_obj = activate_obj.user
+                user_obj.is_active = True
+                activate_obj.expired = True
+                activate_obj.save()
+                return redirect("accounts:login")
+    return redirect("accounts:login")

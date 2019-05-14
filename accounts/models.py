@@ -18,6 +18,9 @@ from django.utils.translation import ugettext_lazy as _l
 # Modelo de Ejemplo de Django
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
 
+# Project
+from .utils import code_generator
+
 # Validador del nombre de usuario
 USERNMAE_REDEX = '^[a-zA-Z0-9.@+-]*$'
 message_register = _l("Username must be Alphanumeric or contain any of the following special characters:  . @ + -")
@@ -120,6 +123,35 @@ class RegisterUser(AbstractBaseUser):
     #     # Simplest possible answer: All admins are staff
     #     return self.is_admin
 
+# Activacion del perfil
+class ActivationProfile(models.Model):
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        verbose_name=_l("User"), 
+        on_delete=models.CASCADE)
+    key = models.CharField(
+        verbose_name=_l("Key"), 
+        max_length=120)
+    expired = models.BooleanField(
+        verbose_name=_l("Expired"),
+        default=False)
+    
+    class Meta:
+        verbose_name=_l('Activation Profile')
+    
+    def __str__(self):
+        return str(self.user)
+    
+    def save(self, *args, **kwargs):
+        self.key = code_generator()
+        super(ActivationProfile, self).save(*args, **kwargs)
+
+# post_save
+def accounts_activation_profile_receiver(sender, instance, created, *args, **kwargs):
+    if created:
+        print("activation created")
+post_save.connect(accounts_activation_profile_receiver, sender = ActivationProfile)
+
 # Perfil de Usuario
 class Profile(models.Model):
     user = models.OneToOneField(
@@ -148,6 +180,7 @@ class Profile(models.Model):
 def accounts_user_model_post_save_receiver(sender, instance, created, *args, **kwargs):
     try:
         Profile.objects.create(user=instance)
+        ActivationProfile.objects.create(user=instance)
     except:
         pass
 post_save.connect(accounts_user_model_post_save_receiver, sender = settings.AUTH_USER_MODEL)

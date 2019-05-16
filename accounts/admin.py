@@ -25,6 +25,7 @@ class RegisterAdmin(BaseUserAdmin):
         (None, {'fields': ('username','email', 'password')}),
         (_l('Personal info'), {'fields': ('zipcode',)}),
         (_l('Permissions'), {'fields': ('is_admin','is_staff')}),
+        (_l('Access'), {'fields': ('is_active',)}),
     )
     # add_fieldsets is not a standard ModelAdmin attribute. UserAdmin
     # overrides get_fieldsets to use this attribute when creating a user.
@@ -41,8 +42,11 @@ class RegisterAdmin(BaseUserAdmin):
 class ProfileAdmin(admin.ModelAdmin):
      list_display = ['user', 'city']
 
+class ActivationProfileAdmin(admin.ModelAdmin):
+    list_display = ['user', 'key', 'expired']
+
 # Admin Register
 admin.site.register(RegisterUser, RegisterAdmin)
 admin.site.register(Profile, ProfileAdmin)
-admin.site.register(ActivationProfile)
+admin.site.register(ActivationProfile, ActivationProfileAdmin)
 admin.site.unregister(Group)

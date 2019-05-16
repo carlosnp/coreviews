@@ -51,6 +51,8 @@ class UserLoginForm(forms.Form):
         password = self.cleaned_data.get('password')
         user_qs = User.objects.filter(username=username).first()
         if user_qs is not None and not user_qs.check_password(password):
+            if not user_qs.is_active:
+                raise forms.ValidationError(_l("Inactive user"))    
             raise forms.ValidationError(_l("Invalid password"))
         return password
 
@@ -100,6 +102,7 @@ class UserCreationForm(forms.ModelForm):
         # Save the provided password in hashed format
         user = super().save(commit=False)
         user.set_password(self.cleaned_data["password1"])
+        # user.is_active = False
         if commit:
             user.save()
         return user

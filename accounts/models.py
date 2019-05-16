@@ -145,11 +145,17 @@ class ActivationProfile(models.Model):
     def save(self, *args, **kwargs):
         self.key = code_generator()
         super(ActivationProfile, self).save(*args, **kwargs)
+    
+    # URL
+    def get_absolute_url(self):
+        return reverse("accounts:activate", kwargs={"code":self.key})
+    
 
 # post_save
 def accounts_activation_profile_receiver(sender, instance, created, *args, **kwargs):
     if created:
         print("activation created")
+        print(instance.key)
 post_save.connect(accounts_activation_profile_receiver, sender = ActivationProfile)
 
 # Perfil de Usuario

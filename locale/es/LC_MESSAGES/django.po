@@ -213,6 +213,9 @@ msgstr "Inglés"
 ################################################################
 # Accounts: Model
 
+msgid "Access"
+msgstr "Acceso"
+
 msgid "City"
 msgstr "Ciudad"
 
@@ -233,6 +236,9 @@ msgstr "Primer Nombre"
 
 msgid "Last name"
 msgstr "Apellido"
+
+msgid "Inactive user"
+msgstr "Usuario Inactivo"
 
 msgid "Is active"
 msgstr "Está activo"

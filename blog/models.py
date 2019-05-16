@@ -132,7 +132,7 @@ class PostModel(models.Model):
 
 # pre_save
 def blog_post_model_pre_save_receiver(sender, instance, *args, **kwargs):
-    print("Antes de Guardar")
+    # print("Antes de Guardar")
     if not instance.slug or instance.title:
         instance.slug = slugify(instance.title, allow_unicode=True) 
 
@@ -140,8 +140,8 @@ pre_save.connect(blog_post_model_pre_save_receiver, sender=PostModel)
 
 # post_save
 def blog_post_model_post_save_receiver(sender, instance, created, *args, **kwargs):
-    print("Despues de Guardar")
-    print(created)
+    # print("Despues de Guardar")
+    # print(created)
     if created:
         if not instance.slug or instance.title:
             instance.slug = slugify(instance.title, allow_unicode=True)

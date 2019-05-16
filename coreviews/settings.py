@@ -121,7 +121,7 @@ LANGUAGES = (
     ('en', _('English')),
 )
 # Idioma predeterminado
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es'
 # Zona horaria
 TIME_ZONE = 'America/Caracas'
 # Traducciones

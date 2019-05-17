@@ -55,7 +55,7 @@ class PostModelFormTestCase(TestCase):
     def test_invalid_form(self):
         title   ='Titulo de prueba del formulario 1'
         slug = slugify(title)
-        content ='Contetido lorem ipsum'
+        content ='Contenido lorem ipsum'
         publish = 'publish'
         # Crea en base de datos
         obj   = PostModel.objects.create(
@@ -73,11 +73,11 @@ class PostModelFormTestCase(TestCase):
         # En el formulario se coloca informacion 
         # ya existente en base de datos
         form = PostModelForm(data=data)
-        if form.errors:
-            print("")
-            print("errors invalid form")
-            print(form.errors)
-            print("")
+        # if form.errors:
+        #     print("")
+        #     print("errors invalid form")
+        #     print(form.errors)
+        #     print("")
         self.assertFalse(form.is_valid())
         self.assertTrue(form.errors)
         print("test invalid form")

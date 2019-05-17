@@ -3,7 +3,7 @@ from django.test import TestCase
 from django.utils.text import slugify
 
 # Project
-from .models import PostModel
+from blog.models import PostModel
 
 class PostModelTestCase(TestCase):
     def setUp(self):
@@ -18,6 +18,7 @@ class PostModelTestCase(TestCase):
         obj = PostModel.objects.get(slug="hola-mundo-test")
         self.assertEqual(obj.title, 'Hola mundo test')
         self.assertTrue(obj.content != '')
+        print("test model title")
     
     def test_postsmodel_slug(self):
         title1 = "pruba de slug 10"
@@ -32,6 +33,7 @@ class PostModelTestCase(TestCase):
         self.assertEqual(obj1.slug, slug1)
         self.assertEqual(obj2.slug, slug2)
         self.assertNotEqual(obj3.slug, slug2)
+        print("test model slug")
     
     def test_post_qs(self):
         title1 = "pruba de slug 100"
@@ -42,3 +44,4 @@ class PostModelTestCase(TestCase):
         # Query set slug
         qs2 = PostModel.objects.filter(slug=obj1.slug)
         self.assertEqual(qs2.count(), 1)
+        print("test model qs")
